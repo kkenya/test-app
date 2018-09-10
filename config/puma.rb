@@ -13,7 +13,7 @@ port        ENV.fetch("PORT") { 3000 }
 
 # Specifies the `environment` that Puma will run in.
 #
-environment ENV.fetch("RAILS_ENV") { "development" }
+environment ENV.fetch("RAILS_ENV") { "production" }
 
 # Specifies the number of `workers` to boot in clustered mode.
 # Workers are forked webserver processes. If using threads and workers together
@@ -33,7 +33,8 @@ environment ENV.fetch("RAILS_ENV") { "development" }
 # Allow puma to be restarted by `rails restart` command.
 plugin :tmp_restart
 
-pidfile = "#{Dir.pwd}/tmp/pids/puma.pid";
-state_path "#{Dir.pwd}/tmp/pids/puma.state"
+app_dir = "#{File.expand_path("../..", __FILE__)}"
+pidfile = "#{app_dir}/tmp/pids/puma.pid";
+state_path "#{app_dir}/tmp/pids/puma.state"
 # bind "unix://#{Rails.root}/tmp/sockets/puma.sock"
-bind "unix://#{Dir.pwd}/tmp/sockets/puma.sock"
+bind "unix://#{app_dir}/tmp/sockets/puma.sock"
